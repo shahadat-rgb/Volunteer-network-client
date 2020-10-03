@@ -4,8 +4,11 @@ import logo from '../../logos/Group 1329.png'
 import './Header.css'
 const Header = () => {
     return (
-       <div className="container">
-            <nav class="navbar navbar-expand-lg navbar-light">
+       
+       
+          
+           <div className="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
            <img style={{height:'50px'}} src={logo} alt=""/>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -16,13 +19,13 @@ const Header = () => {
               <b><Link class="nav-link pr-4" href="#">Home</Link></b>
             </li>
             <li class="nav-item">
-             <b> <Link class="nav-link pr-4"  href="#">Donation</Link></b>
+             <b> <Link class="nav-link pr-4 "  href="#">Donation</Link></b>
             </li>
             <li class="nav-item">
-            <b>  <Link class="nav-link pr-4" href="#">Blog</Link></b>
+            <b>  <Link class="nav-link pr-4 " href="#">Blog</Link></b>
             </li>
             <li class="nav-item">
-              <b><Link class="nav-link pr-4" href="#">Events</Link></b>
+              <b><Link class="nav-link pr-4 " href="#">Events</Link></b>
             </li>
              <li>
              <button className="Register-btn">Register</button>
@@ -35,6 +38,7 @@ const Header = () => {
         </div>
       </nav>
        </div>
+   
     );
 };
 

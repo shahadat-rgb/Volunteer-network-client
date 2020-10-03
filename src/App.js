@@ -5,22 +5,22 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Header from './Component/Header/Header';
 import Home from './Component/Home/Home';
-import RegistarForm from './Component/RegistarForm/RegistarForm';
+import Header from './Component/Header/Header';
+// import RegistarForm from './Component/RegistarForm/RegistarForm';
 
-export  const UserContext =createContext();
+// export  const UserContext =createContext();
 function App() {
   return (
      <Router>
        <Switch>
          <Route path="/">
-              <Header></Header>
+             <Header></Header>
               <Home></Home>
          </Route>
-         <Route path="Registration">
+         {/* <Route path="Registration">
             <RegistarForm></RegistarForm>
-         </Route>
+         </Route> */}
        </Switch>
      </Router>
   );
