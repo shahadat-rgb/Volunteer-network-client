@@ -3,7 +3,7 @@ import './Home.css'
 import AllPicture from '../AllPicture/AllPicture';
 import { Grid } from '@material-ui/core';
 import volunteer from "../../voluanteer-bg.jpg"
-
+import Header from '../Header/Header';
 const  FakeData=[
     {
         name:'animal shelter',
@@ -98,9 +98,10 @@ const  FakeData=[
 ];
 const Home = () => {
     return (
-     <>
-          <div style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${volunteer})` }} className="home">
-        <div className="container">
+     <> 
+          <div style={{ backgroundImage: `linear-gradient(rgba(177, 174, 174, 0.835),rgba(167, 151, 151, 0.815)), url(${volunteer})` }} className="home">
+            <div className="container">
+                 <Header></Header>
                 <div className="container input-aria">
                     <h1>I grow by helping people in need</h1>
                     <div class="input-group">

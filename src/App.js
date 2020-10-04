@@ -1,28 +1,30 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import {BrowserRouter as Router,Switch,Route,} from "react-router-dom";
 import Home from './Component/Home/Home';
-import Header from './Component/Header/Header';
-// import RegistarForm from './Component/RegistarForm/RegistarForm';
+import Login from './Component/Login/Login';
+import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
+import RegistarForm from './Component/RegistarForm/RegistarForm';
 
-// export  const UserContext =createContext();
-function App() {
+export const UserContext= createContext();
+ function App() {   
+   const [loggedInUser,setLoggedInUser] =useState({})
   return (
+    <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
      <Router>
        <Switch>
-         <Route path="/">
-             <Header></Header>
-              <Home></Home>
+         <Route exact path="/">
+           <Home></Home> 
          </Route>
-         {/* <Route path="Registration">
-            <RegistarForm></RegistarForm>
-         </Route> */}
+         <Route path="/login">
+           <Login></Login>
+         </Route>
+        <PrivateRoute path="/registerForm">
+           <RegistarForm></RegistarForm>
+         </PrivateRoute>
        </Switch>
-     </Router>
+    </Router>
+    </UserContext.Provider>
   );
 }
 
