@@ -1,13 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
  import "./AllPicture.css"
-const AllPicture = ({allPicture}) => {
+const AllPicture = (props) => {
+    const [loggedInUser,setLoggedInUser] =useContext (UserContext)
+   const history =useHistory()
+   const {pic,name} =props.allPicture;
+
+
+   const eventHandler=()=>{
+       setLoggedInUser({...loggedInUser, evet: props.event})
+       history.push('/registerForm')
+   }
     return (
         <div>
              
                  <div>
-                   <Link to='/registerForm' > <img className="allVolunteerPic" src={ require(`../../images/${allPicture.pic}`)}alt=""/> </Link>
-                     <h3  style={{textAlign:'center'}}>{allPicture.name}</h3>
+                    <div onClick={eventHandler}>
+                    <img className="allVolunteerPic" src={ require(`../../images/${pic}`)}alt=""/> 
+                    </div>
+                     <h3  style={{textAlign:'center'}}>{name}</h3>
                      
                  </div>
              </div>

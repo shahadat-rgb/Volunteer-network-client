@@ -3,15 +3,30 @@ import { UserContext } from '../../App';
 import {useForm} from 'react-hook-form'
 import Header from '../Header/Header';
 import "./Registar.css"
+import { useHistory } from 'react-router-dom';
 const RegistarForm = () => {
+    const history=useHistory();
     const [loggedInUser,setLoggedInUser] =useContext(UserContext)
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
 
   const onSubmit= data =>{
-      console.log(data);
+     const registerUser=({eventName:loggedInUser.event?.name,  name:loggedInUser.name, email:loggedInUser.email, img:loggedInUser.event?.pic, register:data})
+
+    fetch('http://localhost:4000/submit-form',{
+      method:'POST', 
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(registerUser)
+  })
+  .then(res=>res.text())
+  .then(result=>{
+      if(result ==='true'){
+          history.push('/events')
+      }
+  })
+     
   }
      
-      console.log(watch("example")); // watch input value by passing the name of it
+      // console.log(watch("example")); // watch input value by passing the name of it
     return (
       <div className="container">
           <Header></Header> <br/> <br/> <br/>
@@ -26,18 +41,17 @@ const RegistarForm = () => {
 <input name="email"  defaultValue={loggedInUser.email}  ref={register({ required: true })} className='input-value' placeholder="write your email" /> <br/> <br/><br/>
 {errors.email && <span className="error">Email is required</span>}
 
-<input name="date" ref={register({ required: true })} className='input-value' placeholder="write your date" />  <br/> <br/> <br/>
+<input name="discription"  ref={register({ required: true })} className='input-value' placeholder="write your discription" /> <br/> <br/><br/>
+{errors.discription && <span className="error">discription is required</span>}
 
-{errors.date && <span className="error">Address is required</span>}
+<input type="date" ref={register({ required: true })} className='input-value' name="date" id="date"/> <br/> <br/> <br/>
+{errors.date && <span className="error">date is required</span>}
 
-<input name="phone" ref={register({ required: true })} className='input-value' placeholder="write your phone number"/> <br/> <br/><br/>
-{errors.phone && <span className="error">Phone is required</span>}
-
-<input name="organic"  ref={register({ required: true })} className='input-value' placeholder="write your organic name"/> <br/> <br/><br/>
-{errors.organic && <span className="error">Password is required</span>}
+<input name="organic" defaultValue={loggedInUser.event?.name}   ref={register({ required: true })} className='input-value' placeholder="write your organic name"/> <br/> <br/><br/>
+{errors.organic && <span className="error">organic is required</span>}
    
 
-  <input  className="btn btn-primary Registration-btn" type="button" value="Registration-now"/>
+<button className="btn btn-primary Registration-btn"  type="submit">Registration</button>
 </form>
          </section>
            </section>
