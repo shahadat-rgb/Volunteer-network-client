@@ -19,9 +19,9 @@ export const UserContext= createContext();
          <Route path="/login">
            <Login></Login>
          </Route>
-        <PrivateRoute path="/registerForm">
+        <Route path="/registerForm">
            <RegistarForm></RegistarForm>
-         </PrivateRoute>
+         </Route>
        </Switch>
     </Router>
     </UserContext.Provider>

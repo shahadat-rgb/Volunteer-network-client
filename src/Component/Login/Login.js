@@ -7,6 +7,7 @@ import { UserContext } from '../../App';
 import logos from "../../logos/Group 1329.png"
 import google from "../../google.png"
 import "./Login.css"
+import Header from '../Header/Header';
 
 const Login = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -35,20 +36,25 @@ const Login = () => {
     }
     return (
         <body className="container google-auth">
-
-          <div className="container logo-icon">
-               <img  src={logos} alt=""/>
-          </div>
-          <div className="container google-login-aria">
+         <Header></Header>
+         
+         <div className="row justify-content-center">
+             <div className="col-12 col-sm-6 col-md-7">
+                 
+          <div className=" container google-login-aria">
                    <h1 style={{textAlign:'center',marginTop:'20px'}}>Login aria</h1>
 
               <div onClick={handleGoogleSignIn} className="google-loggedIn">
-                  <img style={{height:'40px'}} src={google} alt=""/>
-                  <h3 style={{marginLeft:'30px'}}> Continue with google </h3>
+                <img style={{height:'40px',marginRight:'50px'}} src={google} alt=""/>
+                <h4> Continue with google </h4>
+                   
               </div>
-              <span style={{textAlign:'center'}}>Dont have an account ?</span>  <span style={{color:'orange',paddingLeft:'5px',textAlign:'center'}}> <u>create an account</u> </span>
+              <div style={{textAlign:'center'}}>
+              <span>Dont have an account ?</span>  <span style={{color:'orange',paddingLeft:'5px'}}> <u>create an account</u> </span>
+              </div>
           </div>
-
+             </div>
+         </div>
         </body>
     );
 };
