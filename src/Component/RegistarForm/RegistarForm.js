@@ -3,30 +3,28 @@ import { UserContext } from '../../App';
 import {useForm} from 'react-hook-form'
 import Header from '../Header/Header';
 import "./Registar.css"
-import { useHistory } from 'react-router-dom';
 const RegistarForm = () => {
-    const history=useHistory();
     const [loggedInUser,setLoggedInUser] =useContext(UserContext)
     const { register, handleSubmit, errors } = useForm();
 
   const onSubmit= data =>{
-     const registerUser=({eventName:loggedInUser.event?.name,  name:loggedInUser.name, email:loggedInUser.email, img:loggedInUser.event?.pic, register:data})
-
-    fetch('http://localhost:4000/submit-form',{
-      method:'POST', 
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(registerUser)
-  })
-  .then(res=>res.text())
-  .then(result=>{
-      if(result ==='true'){
-          history.push('/events')
-      }
-  })
-     
+      const registred = {...loggedInUser , registred:data}
+    fetch('https://aqueous-ravine-23556.herokuapp.com/submit-aria',{
+      method:'POST',
+      headers:{'Content-Type': 'application/json'},
+     body:JSON.stringify(registred)
+      
+    })
+    .then(res =>res.json())
+    .then(data =>{
+        if (data) {
+          alert('registration conferm')
+        }
+    })
   }
+
+    
      
-      // console.log(watch("example")); // watch input value by passing the name of it
     return (
       <div className="container">
           <Header></Header> <br/> <br/> <br/>
@@ -47,7 +45,7 @@ const RegistarForm = () => {
 <input type="date" ref={register({ required: true })} className='input-value' name="date" id="date"/> <br/> <br/> <br/>
 {errors.date && <span className="error">date is required</span>}
 
-<input name="organic" defaultValue={loggedInUser.event?.name}   ref={register({ required: true })} className='input-value' placeholder="write your organic name"/> <br/> <br/><br/>
+<input name="organic"   ref={register({ required: true })} className='input-value' placeholder="write your organic name"/> <br/> <br/><br/>
 {errors.organic && <span className="error">organic is required</span>}
    
 

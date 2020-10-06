@@ -5,6 +5,7 @@ import Home from './Component/Home/Home';
 import Login from './Component/Login/Login';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 import RegistarForm from './Component/RegistarForm/RegistarForm';
+import NotMatch from './Component/NotMatch/NotMatch';
 
 export const UserContext= createContext();
  function App() {   
@@ -16,12 +17,19 @@ export const UserContext= createContext();
          <Route exact path="/">
            <Home></Home> 
          </Route>
+         
          <Route path="/login">
            <Login></Login>
          </Route>
+
         <PrivateRoute path="/registerForm">
            <RegistarForm></RegistarForm>
          </PrivateRoute>
+
+         <Route path='*'>
+         <NotMatch></NotMatch>
+       </Route>
+
        </Switch>
     </Router>
     </UserContext.Provider>
